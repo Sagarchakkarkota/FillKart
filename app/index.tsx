@@ -1,10 +1,5 @@
-import { View } from "react-native";
-import MyCarousel from "./_components/Carousel";
+import { Redirect } from "expo-router";
 
 export default function Index() {
-  return (
-    <View>
-      <MyCarousel />
-    </View>
-  );
+  return <Redirect href={"/home"} />;
 }

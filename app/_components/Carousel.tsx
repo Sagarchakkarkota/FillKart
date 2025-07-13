@@ -1,20 +1,39 @@
 // Carousel.tsx
 import { carouselImages } from "@/constants/carouselImages.constants";
-import { ICarouselImages } from "@/types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
+import { ICarouselImages } from "../../types/home.types";
 
 const { width } = Dimensions.get("window");
 
 const MyCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [percentage, setPercentage] = useState(0);
+  const duration = 2000;
+  const carouselInterVal = 5000;
+  const totalCycleTime = duration + carouselInterVal;
+  useEffect(() => {
+    setPercentage(0);
+    let count = 0;
+    const interval = setInterval(() => {
+      count += 1;
 
+      if (count > 100) {
+        clearInterval(interval);
+        setPercentage(0);
+        return;
+      }
+
+      setPercentage(count);
+    }, totalCycleTime / 100);
+    return () => clearInterval(interval);
+  }, [activeIndex]);
   return (
     <View>
       <Carousel
         autoPlay
-        autoPlayInterval={5000}
+        autoPlayInterval={2000}
         data={carouselImages}
         height={208}
         loop={true}
@@ -26,7 +45,7 @@ const MyCarousel = () => {
           parallaxScrollingScale: 0.9,
           parallaxScrollingOffset: 5,
         }}
-        scrollAnimationDuration={2000}
+        scrollAnimationDuration={duration}
         onSnapToItem={(index) => setActiveIndex(index)}
         renderItem={({ item }: { item: ICarouselImages }) => (
           <Image source={item.url} style={styles.image} />
@@ -35,12 +54,26 @@ const MyCarousel = () => {
 
       {/* Pagination dots */}
       <View style={styles.pagination}>
-        {carouselImages.map((item: ICarouselImages, index) => (
-          <View
-            key={index}
-            style={activeIndex === index ? styles?.dotActive : styles.dot}
-          />
-        ))}
+        {carouselImages.map((item: ICarouselImages, index) => {
+          const activeDot = activeIndex === index;
+          return (
+            <View
+              key={index}
+              style={activeDot ? styles?.dotActive : styles.dot}
+            >
+              {activeDot && (
+                <View
+                  style={{
+                    width: `${percentage}%`,
+                    height: 4,
+                    backgroundColor: "#000",
+                    borderRadius: 30,
+                  }}
+                ></View>
+              )}
+            </View>
+          );
+        })}
       </View>
     </View>
   );
@@ -61,17 +94,17 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   dot: {
-    height: 10,
+    height: 4,
     width: 10,
     backgroundColor: "#ccc",
-    borderRadius: 20,
+    borderRadius: 30,
     marginHorizontal: 4,
   },
   dotActive: {
-    height: 10,
-    width: 10,
-    borderRadius: 20,
-    backgroundColor: "#000",
+    height: 4,
+    width: 30,
+    borderRadius: 30,
     marginHorizontal: 4,
+    backgroundColor: "#ccc",
   },
 });
