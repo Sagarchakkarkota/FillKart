@@ -1,3 +1,4 @@
+import colors from "@/constants/colors.constants";
 import { StyleSheet } from "react-native";
 
 export const searchbarStyles = StyleSheet.create({
@@ -7,7 +8,7 @@ export const searchbarStyles = StyleSheet.create({
     alignItems: "center",
     gap: 4,
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: colors.lightGray,
     borderRadius: 10,
     padding: 6,
     flexGrow: 1,

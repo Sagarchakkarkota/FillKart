@@ -1,3 +1,4 @@
+import colors from "@/constants/colors.constants";
 import Searchbar from "@/uiComponents/Searchbar/Searchbar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
@@ -15,7 +16,7 @@ const Navbar = () => {
           console.log("hit");
         }}
       >
-        <Ionicons name="scan-outline" size={28} color={"gray"} />
+        <Ionicons name="scan-outline" size={28} color={colors.gray} />
       </Pressable>
     </View>
   );

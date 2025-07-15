@@ -1,5 +1,6 @@
 // Carousel.tsx
 import { carouselImages } from "@/constants/carouselImages.constants";
+import colors from "@/constants/colors.constants";
 import React, { useEffect, useState } from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
@@ -66,7 +67,7 @@ const MyCarousel = () => {
                   style={{
                     width: `${percentage}%`,
                     height: 4,
-                    backgroundColor: "#000",
+                    backgroundColor: colors.darkGray,
                     borderRadius: 30,
                   }}
                 ></View>
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
   dot: {
     height: 4,
     width: 10,
-    backgroundColor: "#ccc",
+    backgroundColor: colors.lightGray,
     borderRadius: 30,
     marginHorizontal: 4,
   },
@@ -105,6 +106,6 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 30,
     marginHorizontal: 4,
-    backgroundColor: "#ccc",
+    backgroundColor: colors.lightGray,
   },
 });

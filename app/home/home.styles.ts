@@ -10,7 +10,6 @@ const homeStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
-    borderWidth: 1,
   },
   categoryImage: {
     width: "60%",
@@ -18,6 +17,6 @@ const homeStyles = StyleSheet.create({
     borderRadius: 10,
     resizeMode: "cover",
   },
-  flatListView: {},
+  flatListView: { alignItems: "center" },
 });
 export default homeStyles;

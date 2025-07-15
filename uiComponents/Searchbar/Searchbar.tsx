@@ -1,3 +1,4 @@
+import colors from "@/constants/colors.constants";
 import useDebounce from "@/hooks/useDebounce";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useEffect, useState } from "react";
@@ -16,7 +17,7 @@ const Searchbar = ({ onSearch }: { onSearch: (arg: string) => void }) => {
           console.log("hit");
         }}
       >
-        <Ionicons name="search-outline" size={28} color={"gray"} />
+        <Ionicons name="search-outline" size={28} color={colors.gray} />
       </Pressable>
       <TextInput
         value={query}
@@ -29,7 +30,7 @@ const Searchbar = ({ onSearch }: { onSearch: (arg: string) => void }) => {
           console.log("hit");
         }}
       >
-        <Ionicons name="camera-outline" size={28} color={"gray"} />
+        <Ionicons name="camera-outline" size={28} color={colors.gray} />
       </Pressable>
     </View>
   );
